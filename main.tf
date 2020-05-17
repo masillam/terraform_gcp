@@ -1,6 +1,3 @@
-/******************************************
-	VPC configuration
- *****************************************/
 module "vpc" {
   source                  = "./modules/vpc"
   network_name            = var.network_name
@@ -41,4 +38,10 @@ module "cluster" {
 
   vpc_network_name    = module.vpc.network_name 
   vpc_subnetwork_name = "subnet-01" 
+
+}
+module "createbucket" {
+  source      = "./modules/storage"
+  name        = "testbucket"
+  location    = "europe-west1"
 }
