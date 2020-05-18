@@ -32,12 +32,9 @@ module "cluster" {
   http_load_balancing_disabled           = var.http_load_balancing_disabled
   master_authorized_networks_cidr_blocks = var.master_authorized_networks_cidr_blocks
 
-  # Refer to the vpc-network and vpc-subnetwork by the name value on the
-  # resource, rather than the variable used to assign the name, so that
-  # Terraform knows they must be created before creating the cluster
 
   vpc_network_name    = module.vpc.network_name 
-  vpc_subnetwork_name = "subnet-01" 
+  vpc_subnetwork_name = "google_compute_subnetwork.subnetwork.name" 
 
 }
 module "createbucket" {
