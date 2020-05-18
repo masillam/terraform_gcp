@@ -84,21 +84,12 @@ variable "access_private_images" {
   type    = string
   default = "false"
 
-  description = <<EOF
-Whether to create the IAM role for storage.objectViewer, required to access
-GCR for private container images.
-EOF
 }
 
 variable "http_load_balancing_disabled" {
   type    = string
   default = "false"
 
-  description = <<EOF
-The status of the HTTP (L7) load balancing controller addon, which makes it 
-easy to set up HTTP load balancers for services in a cluster. It is enabled 
-by default; set disabled = true to disable.
-EOF
 }
 
 variable "master_authorized_networks_cidr_blocks" {
@@ -106,18 +97,9 @@ variable "master_authorized_networks_cidr_blocks" {
 
   default = [
     {
-      # External network that can access Kubernetes master through HTTPS. Must
-      # be specified in CIDR notation. This block should allow access from any
-      # address, but is given explicitly to prevernt Google's defaults from
-      # fighting with Terraform.
       cidr_block = "0.0.0.0/0"
-      # Field for users to identify CIDR blocks.
       display_name = "default"
     },
   ]
 
-  description = <<EOF
-Defines up to 20 external networks that can access Kubernetes master
-through HTTPS.
-EOF
 }

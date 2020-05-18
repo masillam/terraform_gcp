@@ -19,9 +19,6 @@ variable "shared_vpc_host" {
 }
 
 
-
-
-
 variable "description" {
   type        = string
   description = "An optional description of this resource. The resource must be recreated to modify this field."
@@ -29,13 +26,10 @@ variable "description" {
 }
 
 
-
 variable "auto_create_subnetworks" {
   type        = bool
-  description = "When set to true, the network is created in 'auto subnet mode' and it will create a subnet for each region automatically across the 10.128.0.0/9 address range. When set to false, the network is created in 'custom subnet mode' so the user can explicitly connect subnetwork resources."
   default     = false
 }
-
 
 
 variable "subnets" {
@@ -52,15 +46,6 @@ default = [
   ]
 
 }
-
-
-
-
-
-
-
-
-
 
 
 variable "gcp_project_id" {
@@ -148,22 +133,11 @@ variable "master_ipv4_cidr_block" {
 variable "access_private_images" {
   type    = string
   default = "false"
-
-  description = <<EOF
-Whether to create the IAM role for storage.objectViewer, required to access
-GCR for private container images.
-EOF
 }
 
 variable "http_load_balancing_disabled" {
   type    = string
   default = "false"
-
-  description = <<EOF
-The status of the HTTP (L7) load balancing controller addon, which makes it 
-easy to set up HTTP load balancers for services in a cluster. It is enabled 
-by default; set disabled = true to disable.
-EOF
 }
 
 variable "master_authorized_networks_cidr_blocks" {
@@ -171,18 +145,9 @@ variable "master_authorized_networks_cidr_blocks" {
 
   default = [
     {
-      # External network that can access Kubernetes master through HTTPS. Must
-      # be specified in CIDR notation. This block should allow access from any
-      # address, but is given explicitly to prevernt Google's defaults from
-      # fighting with Terraform.
       cidr_block = "0.0.0.0/0"
-      # Field for users to identify CIDR blocks.
       display_name = "default"
-    },
+    }
   ]
 
-  description = <<EOF
-Defines up to 20 external networks that can access Kubernetes master
-through HTTPS.
-EOF
 }
